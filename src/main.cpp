@@ -48,14 +48,15 @@ void printGenericInfo(const Shape& shape, std::string_view shapeName);
 int main()
 {
 #if RECTANGLE
-    {
-        Rectangle rec(1, 1, 3, 2);
+    {/*
+      -------   TEST   ------ 
+         Rectangle rec(1, 1, 3, 2);
 
 
         std::cout << "Bottom Left: (" << rec.getBottomLeft().m_col << ", " << rec.getBottomLeft().m_row << ")\n";
         std::cout << "Top Right: (" << rec.getTopRight().m_col << ", " << rec.getTopRight().m_row << ")\n";
         std::cout << "Width: " << rec.getWidth() << "\n";
-        std::cout << "Height: " << rec.getHeight() << "\n";
+        std::cout << "Height: " << rec.getHeight() << "\n";*/
 
 
         static constexpr auto shapeName = std::string_view("rectangle");
