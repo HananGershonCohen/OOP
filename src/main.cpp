@@ -8,7 +8,7 @@
 #include "Vertex.h"
 #include "Board.h"
 
-#define RECTANGLE           0
+#define RECTANGLE           1
 #define TRIANGLE            0
 #define ISOSCELES_TRIANGLE  0
 #define WINDOW              0
@@ -59,8 +59,8 @@ int main()
 
         std::cin.ignore(); // ignore the enter
 
-        auto rectangle = Rectangle(vertices.data());
-        useShape(rectangle, shapeName);
+      /*  auto rectangle = Rectangle(vertices.data());
+        useShape(rectangle, shapeName);*/
     }
 #endif // RECTANGLE
 
@@ -119,20 +119,20 @@ int main()
 #endif // WINDOW
 }
 
-#if RECTANGLE
-void printInfo(const Rectangle& rectangle)
-{
-    static constexpr auto shapeName = std::string_view("rectangle");
-
-    const auto printVertex = [](const Vertex& v, std::string_view vertexName)
-    {
-        std::println("The {} vertex of the {} is: {}", vertexName, shapeName, v);
-    };
-
-    printVertex(rectangle.getBottomLeft(), "bottom-left");
-    printVertex(rectangle.getTopRight(), "top-right");
-}
-#endif // RECTANGLE
+//#if RECTANGLE
+//void printInfo(const Rectangle& rectangle)
+//{
+//    static constexpr auto shapeName = std::string_view("rectangle");
+//
+//    const auto printVertex = [](const Vertex& v, std::string_view vertexName)
+//    {
+//        std::println("The {} vertex of the {} is: {}", vertexName, shapeName, v);
+//    };
+//
+//    printVertex(rectangle.getBottomLeft(), "bottom-left");
+//    printVertex(rectangle.getTopRight(), "top-right");
+//}
+//#endif // RECTANGLE
 
 #if TRIANGLE || ISOSCELES_TRIANGLE
 void printInfo(const auto& triangle, std::string_view shapeName)
