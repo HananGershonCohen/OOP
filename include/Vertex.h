@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 #include <iosfwd>
 #include <format>
 
@@ -14,6 +15,7 @@ struct Vertex
     bool isHigherThan(const Vertex& other) const;
     bool isToTheRightOf(const Vertex& other) const;
     bool isValid() const;
+    bool isParallelXAxis(const Vertex& other) const;
 };
 
 std::istream& operator>>(std::istream& istr, Vertex& v);
