@@ -11,6 +11,6 @@ public:
 private:
 	void initializeTriangle(const Vertex&, const Vertex&, const Vertex&);
 
-	Vertex m_mverBaseLeft, m_verBaseRight, m_verUp;
+	Vertex m_verBaseLeft, m_verBaseRight, m_verUp;
 
 	};

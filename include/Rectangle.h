@@ -1,7 +1,7 @@
 #pragma once
 #include <Vertex.h>
 #include <macros.h>
-
+#include <Board.h>
 class Rectangle
 {
 public:
@@ -14,6 +14,7 @@ public:
     Vertex getTopRight() const;
     double getWidth() const;
     double getHeight() const;
+    void draw(Board& board) const;
 
 private:
     void initializeRectangle(const Vertex& bottomLeft, const Vertex& topRight);
