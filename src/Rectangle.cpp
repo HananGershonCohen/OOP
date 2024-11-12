@@ -77,8 +77,8 @@ double Rectangle::getHeight() const {
     return m_height;
 }
 
-void Rectangle::draw(Board& board) const{
-
+void Rectangle::draw(Board& board) const
+{
     // יצירת  ערכים זמניים ליצירת הקווים.
     Vertex bottemRight, topLeft;
 

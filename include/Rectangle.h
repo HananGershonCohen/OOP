@@ -1,7 +1,7 @@
 #pragma once
 #include <Vertex.h>
-#include <macros.h>
-#include <Board.h>
+#include <macros.h> 
+#include "Board.h"
 class Rectangle
 {
 public:

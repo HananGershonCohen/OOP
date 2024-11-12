@@ -7,6 +7,7 @@ class Triangle
 public:
 	Triangle(const Vertex vertices[3]);
 	Triangle(Vertex v0, Vertex v1, Vertex v2);
+	void draw(Board& board) const;
 
 private:
 	void initializeTriangle(const Vertex&, const Vertex&, const Vertex&);
