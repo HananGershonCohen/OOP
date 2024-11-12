@@ -4,13 +4,13 @@ void Triangle::initializeTriangle(const Vertex& ver1, const Vertex& ver2, const 
 {
 	if (ver1.isValid() && ver2.isValid() && ver3.isValid() && ver2.isParallelXAxis(ver1))
 	{
-		verBaseLeft = ver1;
+		m_verBaseLeft = ver1;
 		m_verBaseRight = ver2;
 		m_verUp = ver3;
 	}
 	else
 	{
-		verBaseLeft.m_col = verBaseLeft.m_row = 20;
+		m_verBaseLeft.m_col = m_verBaseLeft.m_row = 20;
 		m_verBaseRight.m_col = 30;
 		m_verBaseRight.m_row = 20;
 		m_verUp.m_col = 25;
