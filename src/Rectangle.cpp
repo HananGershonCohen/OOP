@@ -4,62 +4,35 @@
 
 using namespace std;
 
-void Rectangle::initializeRectangle(const Vertex& bottomLeft, const Vertex& topRight)
+bool Rectangle::isLegal(const Vertex& bottomLeft, const Vertex& topRight)
 {
-    // בדיקה אם הערכים חוקיים
-    if (bottomLeft.isValid() && topRight.isValid() &&
-        topRight.isHigherThan(bottomLeft) && topRight.isToTheRightOf(bottomLeft))
-    {
-        m_bottomLeft = bottomLeft;
-        m_topRight = topRight;
-        m_width = m_topRight.m_col - m_bottomLeft.m_col;
-        m_height = m_topRight.m_row - m_bottomLeft.m_row;
-    }
-    //else // אתחול לערכים ברירת מחדל
-    //{
-    //    m_bottomLeft.m_col = 20;
-    //    m_bottomLeft.m_row = 10;
-    //    m_topRight.m_col = 30;
-    //    m_topRight.m_row = 20;
-    //    m_width = m_topRight.m_col - m_bottomLeft.m_col;
-    //    m_height = m_topRight.m_row - m_bottomLeft.m_row;
-    //}
+    return (bottomLeft.isValid() && topRight.isValid() &&
+        topRight.isHigherThan(bottomLeft) && topRight.isToTheRightOf(bottomLeft));
 }
 
 // use whith init_list.
 Rectangle::Rectangle(const Vertex& bottomLeft, const Vertex& topRight)
-    :m_bottomLeft(20,10),m_topRight(30,20),
+    :m_bottomLeft(20, 10), m_topRight(30, 20),
     m_width(m_topRight.m_col - m_bottomLeft.m_col),
-    m_height( m_topRight.m_row - m_bottomLeft.m_row)
+    m_height(m_topRight.m_row - m_bottomLeft.m_row)
 {
-    initializeRectangle(bottomLeft, topRight);
+    if (isLegal(bottomLeft, topRight))
+    {
+        m_bottomLeft = bottomLeft;
+        m_topRight = topRight;
+        m_width = (m_topRight.m_col - m_bottomLeft.m_col);
+        m_height = (m_topRight.m_row - m_bottomLeft.m_row);
+    }
 }
 
 Rectangle::Rectangle(const Vertex vertices[2])
-    :m_bottomLeft(20, 10), m_topRight(30, 20),
-    m_width(m_topRight.m_col - m_bottomLeft.m_col),
-    m_height(m_topRight.m_row - m_bottomLeft.m_row) {
-    initializeRectangle(vertices[0], vertices[1]);
-}
+    :Rectangle(vertices[0], vertices[1]) {}
 
-Rectangle::Rectangle(double x, double y, double width, double height) 
-    :m_bottomLeft(20, 10), m_topRight(30, 20),
-    m_width(m_topRight.m_col - m_bottomLeft.m_col),
-    m_height(m_topRight.m_row - m_bottomLeft.m_row)
-{
-    Vertex bottomLeft(x, y);
-    Vertex topRight(x + width, y + height);
-    initializeRectangle(bottomLeft, topRight);
-}
+Rectangle::Rectangle(double x, double y, double width, double height)
+    :Rectangle(Vertex(x, y), Vertex(x + width, y + height)) {}
 
 Rectangle::Rectangle(const Vertex& topRight, double width, double height)
-    :m_bottomLeft(20, 10), m_topRight(30, 20),
-    m_width(m_topRight.m_col - m_bottomLeft.m_col),
-    m_height(m_topRight.m_row - m_bottomLeft.m_row)
-{
-    Vertex bottomLeft(topRight.m_col - width, topRight.m_row - height);
-    initializeRectangle(bottomLeft, topRight);
-}
+    :Rectangle(Vertex(topRight.m_col - width, topRight.m_row - height), topRight) {}
 
 Vertex Rectangle::getBottomLeft() const {
     return m_bottomLeft;
@@ -77,8 +50,8 @@ double Rectangle::getHeight() const {
     return m_height;
 }
 
-void Rectangle::draw(Board& board) const
-{
+void Rectangle::draw(Board& board) const {
+
     // יצירת  ערכים זמניים ליצירת הקווים.
     Vertex bottemRight, topLeft;
 
@@ -93,3 +66,58 @@ void Rectangle::draw(Board& board) const
     board.drawLine(bottemRight, m_topRight);  // right line.
 }
 
+Rectangle Rectangle::getBoundingRectangle() const
+{
+    // return this rectagle.
+    return Rectangle(m_bottomLeft, m_topRight);
+}
+
+double Rectangle::getPerimeter() const
+{
+    return (m_height * 2) + (m_width * 2);
+}
+
+double Rectangle::getArea() const
+{
+    return (m_height * m_width);
+}
+
+Vertex Rectangle::getCenter() const
+{
+    double x, y;
+    x = (m_width / 2) + m_bottomLeft.m_col;
+    y = (m_height / 2) + m_bottomLeft.m_row;
+
+    return Vertex(x, y);
+}
+
+bool Rectangle::scale(double factor)
+{
+    if (factor <= 0)
+        return false;
+
+    Vertex center = getCenter();
+
+
+    // The new distances from each vertex to the center
+    Vertex bottomLeftNew(
+        center.m_col + (m_bottomLeft.m_col - center.m_col) * factor,
+        center.m_row + (m_bottomLeft.m_row - center.m_row) * factor
+    );
+
+    Vertex topRightNew(
+        center.m_col + (m_topRight.m_col - center.m_col) * factor,
+        center.m_row + (m_topRight.m_row - center.m_row) * factor
+    );
+
+    if (!isLegal(bottomLeftNew, topRightNew))
+        return false;
+
+    // Updating the vertices after checking that the domain is valid
+    m_bottomLeft = bottomLeftNew;
+    m_topRight = topRightNew;
+    m_width = topRightNew.m_col - bottomLeftNew.m_col;
+    m_height = topRightNew.m_row - bottomLeftNew.m_row;
+
+    return true;
+}

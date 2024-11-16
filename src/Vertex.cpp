@@ -5,12 +5,12 @@
 
 bool Vertex::isHigherThan(const Vertex& other) const
 {
-    return m_row > other.m_row;
+    return m_row >= other.m_row;
 }
 
 bool Vertex::isToTheRightOf(const Vertex& other) const
 {
-    return m_col > other.m_col;
+    return m_col >= other.m_col;
 }
 
 bool Vertex::isValid() const
@@ -21,7 +21,7 @@ bool Vertex::isValid() const
 bool Vertex::isParallelXAxis(const Vertex& other) const
 {
     // must be if this function are current.
-    return m_row - other.m_row > 0.1; //  m_row == other.m_row
+    return m_row - other.m_row < 0.1; //  m_row == other.m_row
 }
 
 std::istream& operator>>(std::istream& istr, Vertex& v)

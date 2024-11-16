@@ -3,8 +3,6 @@
 #include <cmath>
 #include <iosfwd>
 #include <format>
-#include <Board.h>
-
 
 struct Vertex
 {
