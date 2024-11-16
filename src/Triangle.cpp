@@ -2,6 +2,7 @@
 #include "Utilities.h"
 #include <cmath>
 #include "Board.h"
+#include <algorithm>
 
 
 void Triangle::initializeTriangle(const Vertex& ver1, const Vertex& ver2, const Vertex& ver3)
@@ -99,8 +100,15 @@ Vertex Triangle::getCenter() const
 
 Rectangle Triangle::getBoundingRectangle() const
 {
-	Vertex topRight(m_verBaseRight.m_col, m_verUp.m_row);
-	return Rectangle(m_verBaseLeft, topRight);
+	double colMax = max(max(m_verBaseLeft.m_col, m_verBaseRight.m_col), m_verUp.m_col);
+	double colMin = min(min(m_verBaseLeft.m_col, m_verBaseRight.m_col), m_verUp.m_col);
+	double rowMax = max(max(m_verBaseLeft.m_row, m_verBaseRight.m_row), m_verUp.m_row);
+	double rowMin = min(min(m_verBaseLeft.m_row, m_verBaseRight.m_row), m_verUp.m_row);
+
+	Vertex bottom{ colMin ,rowMin };	
+	Vertex top{ colMax ,rowMax };
+
+	return Rectangle(bottom, top);
 }
 
 bool Triangle::scale(double factor)

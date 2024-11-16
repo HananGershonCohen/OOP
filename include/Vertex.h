@@ -1,8 +1,10 @@
 #pragma once
-
 #include <cmath>
 #include <iosfwd>
 #include <format>
+
+using namespace std;
+
 
 struct Vertex
 {
