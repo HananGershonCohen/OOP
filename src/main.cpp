@@ -509,7 +509,7 @@
 #include "Board.h"
 
 #define RECTANGLE           0
-#define TRIANGLE            0
+#define TRIANGLE            1
 #define ISOSCELES_TRIANGLE  0
 #define WINDOW              0
 

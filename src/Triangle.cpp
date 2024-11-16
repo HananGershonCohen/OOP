@@ -83,7 +83,7 @@ double Triangle::getPerimeter() const
 
 double Triangle::getArea() const
 {
-	double halfPerimeter = getPerimeter();
+	double halfPerimeter = getPerimeter()/2;
 	return sqrt(halfPerimeter * (halfPerimeter - m_ABlength) * (halfPerimeter - m_BClength) * (halfPerimeter - m_CAlength));
 }
 

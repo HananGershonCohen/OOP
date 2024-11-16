@@ -25,4 +25,4 @@ public:
 private:
 	Rectangle m_rectangle;
 	Vertex m_point;
-
+};
