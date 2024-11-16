@@ -33,3 +33,11 @@ std::ostream& operator<<(std::ostream& ostr, const Vertex& v)
 {
     return ostr << "(" << v.m_col << ", " << v.m_row << ")";
 }
+
+
+bool Vertex::isLegalWindo(const Vertex& bottomLeft, const Vertex& topRight) const
+{
+
+    return (m_col >= bottomLeft.m_col && m_row >= bottomLeft.m_row
+        && m_col <= topRight.m_col && m_row <= topRight.m_row);
+}
