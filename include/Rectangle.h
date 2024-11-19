@@ -2,6 +2,7 @@
 #include <Vertex.h>
 #include <macros.h>
 #include <Board.h>
+
 class Rectangle
 {
 public:
@@ -22,8 +23,7 @@ public:
     bool scale(double fator);
 
 private:
-    bool isLegal(const Vertex& bottomLeft, const Vertex& topRight);
-    //void setCenter()
+    bool isLegal(const Vertex& bottomLeft, const Vertex& topRight) const;
 
     Vertex m_bottomLeft, m_topRight;
     double m_width, m_height;

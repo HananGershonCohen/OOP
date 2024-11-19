@@ -19,7 +19,7 @@ void Triangle::initializeTriangle(const Vertex& ver1, const Vertex& ver2, const 
 }
 
 
-Triangle::Triangle(Vertex v0, Vertex v1, Vertex v2) :
+Triangle::Triangle(Vertex v0, Vertex v1, Vertex v2) : // Default values
 	m_verBaseLeft(20, 20), m_verBaseRight(30, 20), m_verUp(25, 20 + sqrt(75)),
 	m_ABlength(distance(m_verBaseLeft, m_verBaseRight)),
 	m_BClength(distance(m_verBaseRight, m_verUp)),
@@ -100,6 +100,7 @@ Vertex Triangle::getCenter() const
 
 Rectangle Triangle::getBoundingRectangle() const
 {
+	// The most extreme vertices.
 	double colMax = max(max(m_verBaseLeft.m_col, m_verBaseRight.m_col), m_verUp.m_col);
 	double colMin = min(min(m_verBaseLeft.m_col, m_verBaseRight.m_col), m_verUp.m_col);
 	double rowMax = max(max(m_verBaseLeft.m_row, m_verBaseRight.m_row), m_verUp.m_row);
@@ -143,6 +144,9 @@ bool Triangle::scale(double factor)
 	m_verBaseLeft = verBaseLeftNew;
 	m_verBaseRight = verBaseRightNew;
 	m_verUp = verUpNew;
+	m_ABlength = distance(m_verBaseLeft, m_verBaseRight);
+	m_BClength = distance(m_verBaseRight, m_verUp);
+	m_CAlength = distance(m_verUp, m_verBaseLeft);
 
 	return true;
 }

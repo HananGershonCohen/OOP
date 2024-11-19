@@ -4,15 +4,15 @@
 
 using namespace std;
 
-bool Rectangle::isLegal(const Vertex& bottomLeft, const Vertex& topRight)
+bool Rectangle::isLegal(const Vertex& bottomLeft, const Vertex& topRight) const
 {
+    // return if Vertex are in range.
     return (bottomLeft.isValid() && topRight.isValid() &&
         topRight.isHigherThan(bottomLeft) && topRight.isToTheRightOf(bottomLeft));
 }
 
-// use whith init_list.
-Rectangle::Rectangle(const Vertex& bottomLeft, const Vertex& topRight)
-    :m_bottomLeft(20, 10), m_topRight(30, 20),
+Rectangle::Rectangle(const Vertex& bottomLeft, const Vertex& topRight): // Default values
+    m_bottomLeft(20, 10), m_topRight(30, 20),
     m_width(m_topRight.m_col - m_bottomLeft.m_col),
     m_height(m_topRight.m_row - m_bottomLeft.m_row)
 {
@@ -52,7 +52,7 @@ double Rectangle::getHeight() const {
 
 void Rectangle::draw(Board& board) const {
 
-    // יצירת  ערכים זמניים ליצירת הקווים.
+    //Creating temporary values ​​for creating the lines.
     Vertex bottemRight, topLeft;
 
     bottemRight.m_col = m_topRight.m_col;

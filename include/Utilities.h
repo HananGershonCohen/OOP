@@ -8,4 +8,4 @@ double distance(const Vertex& v1, const Vertex& v2);
 bool sameCol(const Vertex& v1, const Vertex& v2);
 bool sameRow(const Vertex& v1, const Vertex& v2);
 
-bool isLegalTriangle(const Vertex& v1, const Vertex& v2, const Vertex& v3);
+bool isLegalTriangle(const Vertex& v1, const Vertex& v2, const Vertex& v3) ;

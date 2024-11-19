@@ -14,7 +14,7 @@ void IsoscelesTriangle::initializeIsoscelesTriangle(const Vertex& ver1, const Ve
 
 IsoscelesTriangle::IsoscelesTriangle(const Vertex vertices[3]) 
 	:m_Triangle(Triangle(vertices[0], vertices[1], vertices[2]))
-{
+{ 
 	initializeIsoscelesTriangle(
 		m_Triangle.getVertex(0), 
 		m_Triangle.getVertex(1),
